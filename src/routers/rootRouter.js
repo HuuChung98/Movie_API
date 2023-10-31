@@ -1,4 +1,5 @@
 import express from "express";
+import userRouter from "./Users/userRouter.js";
 
 
 const rootRouter = express.Router();

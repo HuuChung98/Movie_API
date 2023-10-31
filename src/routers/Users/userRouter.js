@@ -1,13 +1,18 @@
 import express from "express";
 
 import { 
-    getTypeOfUser ,
+    getAllUser,
+    getTypeOfUser,
 } from "../../controllers/ManageUser/userController.js";
 
 const userRouter = express.Router();
 
 userRouter.get(
-    "typeofUser", getTypeOfUser
+    "/all-users", getAllUser
+)
+
+userRouter.get(
+    "/type-of-users/:user_id", getTypeOfUser
 )
 
 export default userRouter
