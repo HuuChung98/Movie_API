@@ -4,6 +4,7 @@ import { authenticateToken } from "../../config/jwt.js";
 import { 
     getAllUser,
     getTypeOfUser,
+    paginationUser
 } from "../../controllers/ManageUser/userController.js";
 
 import login from "../../controllers/ManageUser/Login/login.js";
@@ -25,4 +26,9 @@ userRouter.post(
 userRouter.post(
     "/signup", register
 )
+
+userRouter.get(
+    "/pagination/:page/:pageSize", paginationUser
+)
+
 export default userRouter

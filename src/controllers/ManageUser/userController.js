@@ -26,7 +26,26 @@ const getTypeOfUser = async(req, res) => {
     }
 }
 
+// API pagination for user
+const paginationUser = async (req, res) => {
+    try {
+        let { page, pageSize } = req.params;
+        let index = (page - 1) * pageSize;
+
+        let data = await models.Users.findAll({
+            offset: index,
+            limit: Number(pageSize)
+       })
+
+       successCode(res, data, "Pagination user successful");
+    } catch (error) {
+        errorCode(res, "error");
+    }
+}
+
+
 export {
     getAllUser,
-    getTypeOfUser
+    getTypeOfUser, 
+    paginationUser
 }

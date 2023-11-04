@@ -23,7 +23,7 @@ const register = async(req, res) => {
         }
         
     } catch (error) {
-        errorCode(res, "Error in process");
+        errorCode(res, "Error in BE");
     }
 }
 
