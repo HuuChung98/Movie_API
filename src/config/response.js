@@ -6,7 +6,7 @@ const successCode = (res, data, message) => {
 }
 
 const failCode = (res, data, message) => {
-    res.status(200).json({
+    res.status(404).json({
         message,
         content: data
     })
@@ -14,7 +14,7 @@ const failCode = (res, data, message) => {
 
 const errorCode = (res, message) => {
     res.status(500).json({
-        message
+        message,
     })
 }
 
