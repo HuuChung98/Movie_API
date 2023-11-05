@@ -11,8 +11,12 @@ import login from "../../controllers/ManageUser/Login/login.js";
 import register from "../../controllers/ManageUser/Register/register.js";
 const userRouter = express.Router();
 
+// userRouter.get(
+//     "/all-users/", authenticateToken, getAllUser
+// )
+
 userRouter.get(
-    "/all-users/", authenticateToken, getAllUser
+    "/all-users/", getAllUser
 )
 
 userRouter.get(

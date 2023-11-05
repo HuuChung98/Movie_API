@@ -30,4 +30,4 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-app.use('/movie', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
