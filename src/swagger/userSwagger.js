@@ -1,10 +1,13 @@
 // routers/Users/userRouter.js
 
+
 /**
  * @swagger
  * /users/all-users:
  *   get:
  *     summary: Retrieve a list of JSONPlaceholder users.
+ *     tags: 
+ *       - Manage Users
  *     parameters:
  *       - in: header
  *         name: Token
@@ -23,6 +26,8 @@
  * /users/login:
  *   post:
  *     summary: Create a JSONPlaceholder user.
+ *     tags: 
+ *       - Manage Users
  *     requestBody:
  *       required: true
  *       content:
@@ -50,6 +55,8 @@
  * /users/signup:
  *   post:
  *     summary: Create a JSONPlaceholder user.
+ *     tags: 
+ *       - Manage Users
  *     requestBody:
  *       required: true
  *       content:
