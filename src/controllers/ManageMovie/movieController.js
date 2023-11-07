@@ -20,6 +20,8 @@ const getBanner = async(req, res) => {
     }
 }
 
+
+
 const getListMovie = async (req, res) => {
     try {
         let listMovie = await models.Movies.findAll();
@@ -73,19 +75,68 @@ const getListMovieByDate = async(req, res) => {
 
 }
 
-const uploadImage = async (req, res) => {
+// const uploadImage = async (req, res) => {
+    
+//         let file = req.file;
+        
+//         if (file == undefined) {
+//             failCode(res, "Please upload file");
+//         }
+//         await uploadFile(file);
+// }
+
+// Add movie
+const addMovies = async (req, res) => {
     try {
+        let { name, trailer, image, description, date_show, rate, hot, showing, incomming } = req.body;
+        let newMovie = {
+            name,
+            trailer,
+            image,
+            description, 
+            date_show, 
+            rate,
+            hot,
+            showing,
+            incomming
+        };
+        let success = await models.Movies.create(newMovie);
+        if(success) {
+            successCode(res, newMovie, "Add movie successful");
+        }
         
     } catch (error) {
-        
+        errorCode(res, "Error in server");
     }
 }
 
+// Add information for movie
 const updateMovie = async (req, res) => {
     try {
+        let { movie_id } = req.params;
+        let { name, trailer, image, description, date_show, rate, hot, showing, incomming } = req.body;
+
+        let updMovie = {
+            name,
+            trailer,
+            image,
+            description, 
+            date_show, 
+            rate,
+            hot,
+            showing,
+            incomming
+        };
+
+        let udMovie = await models.Movies.update(updMovie, {
+            where: {movie_id}
+        })
+        if (udMovie) {
+            successCode(res, "Update movie successful");
+        } else errorCode(res, "Update movie not successful");
         
     } catch (error) {
-        
+        errorCode(res, "error in server");
     }
 }
 
@@ -99,17 +150,29 @@ const manageMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
     try {
-        
+        let { movie_id } = req.params;
+        let remove = await models.Movies.destroy({
+            where: {movie_id}
+        });
+        if (remove) {
+            successCode(res, "Deleted movie");
+        } else failCode(res, "Delele not successful");
     } catch (error) {
-        
+        errorCode(res, "error in server");
     }
 }
 
 const getInfoMovie = async (req, res) => {
     try {
-        
+        let { movie_id } = req.params;
+        let infoMovie = await models.Movies.findOne({
+            where: {movie_id}
+        })
+        if (infoMovie) {
+            successCode(res, infoMovie, "Information for movie");
+        } else failCode(res, "Information");
     } catch (error) {
-        
+        errorCode(res, "error in server");
     }
 }
 
@@ -118,9 +181,10 @@ export {
     getListMovie,
     paginationMovie,
     getListMovieByDate,
-    uploadImage,
+    // uploadImage,
+    addMovies,
     updateMovie,
     manageMovie,
     deleteMovie,
-    getInfoMovie
+    getInfoMovie,
 }
