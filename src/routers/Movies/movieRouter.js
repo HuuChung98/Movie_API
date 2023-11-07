@@ -54,19 +54,19 @@ movieRouter.post("/uploadImages", upload.array('files', 3), (req, res) => {
 
 movieRouter.post(
     "/addMovie", addMovies
-)
+);
 
 movieRouter.post(
     "/updateMovie/:movie_id", updateMovie
-)
+);
 
 movieRouter.delete(
     "/deleteMovie/:movie_id", deleteMovie
-)
+);
 
 movieRouter.get(
     "/informationMovie/:movie_id", getInfoMovie
-)
+);
 
 // movieRouter.post(
 //     "/uploadImage", 
